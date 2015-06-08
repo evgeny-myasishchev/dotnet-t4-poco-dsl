@@ -1,0 +1,1 @@
+Source code of the blog post http://evgmya.blogspot.com/2015/06/net-t4-text-templates-and-poco-dsl.html
