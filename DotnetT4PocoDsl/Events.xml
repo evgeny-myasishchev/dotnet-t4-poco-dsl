@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DepartmentEvents namespace="DotnetT4PocoDsl.Events">
+    <DepartmentAdded Id="int" ReferenceNumber="string" Name="string" Description="string" />
+    <DepartmentUpdated Id="int" ReferenceNumber="string" Name="string" Description="string" />
+    <DepartmentRemoved Id="int" Reason="string" />
+</DepartmentEvents>

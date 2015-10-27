@@ -1,0 +1,6 @@
+﻿<?xml version="1.0" encoding="utf-8" ?>
+<DepartmentCommands namespace="DotnetT4PocoDsl.Commands">
+    <AddDepartment ReferenceNumber="string" Name="string" Description="string" />
+    <UpdateDepartment Id="int" ReferenceNumber="string" Name="string" Description="string" />
+    <RemoveDepartment Id="int" Reason="string" />
+</DepartmentCommands>

@@ -1,0 +1,125 @@
+﻿<#@ template debug="true" hostspecific="true" language="C#" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ assembly name="System.Core" #>
+<#@ assembly name="System.Xml" #>
+<#@ assembly name="System.Xml.Linq" #>
+<#@ import namespace="System.Linq" #>
+<#@ import namespace="System.Xml.Linq" #>
+<#@ import namespace="System.Text" #>
+<#@ import namespace="System.Collections.Generic" #>
+<#@ output extension=".cs" #>
+//Generated file. Do not edit it manually.
+using System;
+<#
+//Define your inputs below
+var inputs = new[]
+{
+    "Commands.xml", "Events.xml"
+};
+
+//Processing inputs
+foreach(var input in inputs) 
+{
+    var source = this.Host.ResolvePath(input);
+    var sourceDoc = XDocument.Load(source);
+    var ns = sourceDoc.Root.Attribute("namespace").Value;
+    #>
+
+namespace <#= ns #>
+{<#
+    foreach(var element in sourceDoc.Root.Elements())
+    {
+    var attributes = element.Attributes().ToList();
+#>
+
+    public partial class <#= element.Name #> : IEquatable<<#= element.Name #>>
+    {
+<#
+        foreach(var property in attributes)
+        { 
+#>        public <#= property.Value #> <#= property.Name #> { get; set; }
+<#
+        }
+#>
+
+        public <#= element.Name #>()
+        {
+        }
+
+<#
+        var constructorArgs = new List<string>();
+        for(var i = 0; i < attributes.Count(); i++)
+        { 
+            var property = attributes.ElementAt(i);
+            constructorArgs.Add(property.Value + " a" + property.Name + " = default(" + property.Value + ")");
+        }
+#>
+        public <#= element.Name #>(<#= String.Join(",", constructorArgs) #>)
+        {
+<#
+        for(var i = 0; i < attributes.Count(); i++)
+        { 
+            var property = attributes.ElementAt(i);
+#>            <#= property.Name #> = a<#= property.Name #>;
+<#
+        }
+#>
+        }
+
+        public bool Equals(<#= element.Name #> other)
+        {
+            return
+<#
+        for(var i = 0; i < attributes.Count(); i++)
+        { 
+            var property = attributes.ElementAt(i);
+            var termination = (i + 1 < attributes.Count()) ? " &&" : ";";
+            string equalityString;
+            if(property.Value == "XElement") 
+            {
+                equalityString = property.Name + ".CompareContent(" + "other." + property.Name + ")" + termination;
+            }
+            else if(property.Value.StartsWith("IDictionary"))
+            {
+                equalityString = property.Name + ".SequenceEqual(" + "other." + property.Name + ")" + termination;
+            } 
+            else 
+            {
+                equalityString = property.Name + " == " + "other." + property.Name + termination;
+            }            
+#>                <#= equalityString #>
+<#
+        }
+#>
+        }
+
+        public override string ToString()
+        {
+<#
+        var formatPart = new StringBuilder();
+        var argumentsPart = new StringBuilder();
+        formatPart.Append("<").Append(element.Name).Append(" ");
+        for(var i = 0; i < attributes.Count(); i++)
+        { 
+            var nextI = i + 1;
+            var property = attributes.ElementAt(i);
+            formatPart.Append(property.Name).Append(": {" + i + "}").Append(nextI < attributes.Count() ? ", " : "");
+            argumentsPart.Append(property.Name).Append(nextI < attributes.Count() ? ", " : "");
+        }
+        formatPart.Append(">");
+#>
+            return string.Format("<#= formatPart #>", <#= argumentsPart #>);
+        }
+    }
+<#
+    }
+#>
+}<#
+}
+#>
