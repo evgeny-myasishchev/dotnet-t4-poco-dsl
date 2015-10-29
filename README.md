@@ -1,1 +1,3 @@
-Source code of the blog post http://evgmya.blogspot.com/2015/06/net-t4-text-templates-and-poco-dsl.html
+Source code of the blog post http://evgmya.blogspot.com/2015/10/cooking-pocos-recipe-t4-and-xml-based.html
+
+License: **MIT**
