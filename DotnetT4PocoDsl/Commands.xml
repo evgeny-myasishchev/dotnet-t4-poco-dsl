@@ -1,6 +1,6 @@
 ﻿<?xml version="1.0" encoding="utf-8" ?>
 <DepartmentCommands namespace="DotnetT4PocoDsl.Commands">
-    <AddDepartmentCommand ReferenceNumber="string" Name="string" Description="string" />
-    <UpdateDepartmentCommand Id="int" ReferenceNumber="string" Name="string" Description="string" />
+    <AddDepartmentCommand ReferenceNumber="string" Name="string" Description="string" CustomFields="IDictionary&lt;string, string&gt;" FieldsMeta="XElement" />
+    <UpdateDepartmentCommand Id="int" ReferenceNumber="string" Name="string" Description="string" CustomFields="IDictionary&lt;string, string&gt;" FieldsMeta="XElement" />
     <RemoveDepartmentCommand Id="int" Reason="string" />
 </DepartmentCommands>

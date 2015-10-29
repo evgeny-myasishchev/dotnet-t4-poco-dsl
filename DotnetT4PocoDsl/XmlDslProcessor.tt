@@ -11,6 +11,9 @@
 <#@ output extension=".cs" #>
 //Generated file. Do not edit it manually.
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 <#
     //Define your inputs below
     var inputs = new[]
@@ -57,18 +60,19 @@ namespace <#= sourceDoc.Root.Attribute("namespace").Value #>
 #>
         }
 
-        public bool Equals(<#= classDefElement.Name #> other)
-        {
-            return
 <#
         var equalityParts = propertyDefAttribs.Select(property =>
         {
-            if (property.Value == "XElement") return property.Name + ".CompareContent(" + "other." + property.Name + ")";
-            if (property.Value.StartsWith("IDictionary")) return property.Name + ".SequenceEqual(" + "other." + property.Name + ")";
+            if (property.Value == "XElement")
+                return "XNode.DeepEquals(" + property.Name + ", other." + property.Name + ")";
+            if (property.Value.StartsWith("IDictionary"))
+                return property.Name + ".SequenceEqual(" + "other." + property.Name + ")";
             return property.Name + " == " + "other." + property.Name;
         });
-
-            #>                <#= String.Join(" &&\r\n                ", equalityParts) #>;
+        #>
+        public bool Equals(<#= classDefElement.Name #> other)
+        {
+            return <#= String.Join(" &&\r\n           ", equalityParts) #>;
         }
 
         public override string ToString()

@@ -1,5 +1,8 @@
 ﻿//Generated file. Do not edit it manually.
 using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Xml.Linq;
 
 namespace DotnetT4PocoDsl.Commands
 {
@@ -8,25 +11,30 @@ namespace DotnetT4PocoDsl.Commands
         public string ReferenceNumber { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public IDictionary<string, string> CustomFields { get; set; }
+        public XElement FieldsMeta { get; set; }
 
-        public AddDepartmentCommand(string referencenumber = default(string), string name = default(string), string description = default(string))
+        public AddDepartmentCommand(string referencenumber = default(string), string name = default(string), string description = default(string), IDictionary<string, string> customfields = default(IDictionary<string, string>), XElement fieldsmeta = default(XElement))
         {
             ReferenceNumber = referencenumber;
             Name = name;
             Description = description;
+            CustomFields = customfields;
+            FieldsMeta = fieldsmeta;
         }
 
         public bool Equals(AddDepartmentCommand other)
         {
-            return
-                ReferenceNumber == other.ReferenceNumber &&
-                Name == other.Name &&
-                Description == other.Description;
+            return ReferenceNumber == other.ReferenceNumber &&
+           Name == other.Name &&
+           Description == other.Description &&
+           CustomFields.SequenceEqual(other.CustomFields) &&
+           XNode.DeepEquals(FieldsMeta, other.FieldsMeta);
         }
 
         public override string ToString()
         {
-            return string.Format("<AddDepartmentCommand ReferenceNumber: {0}, Name: {1}, Description: {2}>", ReferenceNumber, Name, Description);
+            return string.Format("<AddDepartmentCommand ReferenceNumber: {0}, Name: {1}, Description: {2}, CustomFields: {3}, FieldsMeta: {4}>", ReferenceNumber, Name, Description, CustomFields, FieldsMeta);
         }
     }
 
@@ -36,27 +44,32 @@ namespace DotnetT4PocoDsl.Commands
         public string ReferenceNumber { get; set; }
         public string Name { get; set; }
         public string Description { get; set; }
+        public IDictionary<string, string> CustomFields { get; set; }
+        public XElement FieldsMeta { get; set; }
 
-        public UpdateDepartmentCommand(int id = default(int), string referencenumber = default(string), string name = default(string), string description = default(string))
+        public UpdateDepartmentCommand(int id = default(int), string referencenumber = default(string), string name = default(string), string description = default(string), IDictionary<string, string> customfields = default(IDictionary<string, string>), XElement fieldsmeta = default(XElement))
         {
             Id = id;
             ReferenceNumber = referencenumber;
             Name = name;
             Description = description;
+            CustomFields = customfields;
+            FieldsMeta = fieldsmeta;
         }
 
         public bool Equals(UpdateDepartmentCommand other)
         {
-            return
-                Id == other.Id &&
-                ReferenceNumber == other.ReferenceNumber &&
-                Name == other.Name &&
-                Description == other.Description;
+            return Id == other.Id &&
+           ReferenceNumber == other.ReferenceNumber &&
+           Name == other.Name &&
+           Description == other.Description &&
+           CustomFields.SequenceEqual(other.CustomFields) &&
+           XNode.DeepEquals(FieldsMeta, other.FieldsMeta);
         }
 
         public override string ToString()
         {
-            return string.Format("<UpdateDepartmentCommand Id: {0}, ReferenceNumber: {1}, Name: {2}, Description: {3}>", Id, ReferenceNumber, Name, Description);
+            return string.Format("<UpdateDepartmentCommand Id: {0}, ReferenceNumber: {1}, Name: {2}, Description: {3}, CustomFields: {4}, FieldsMeta: {5}>", Id, ReferenceNumber, Name, Description, CustomFields, FieldsMeta);
         }
     }
 
@@ -73,9 +86,8 @@ namespace DotnetT4PocoDsl.Commands
 
         public bool Equals(RemoveDepartmentCommand other)
         {
-            return
-                Id == other.Id &&
-                Reason == other.Reason;
+            return Id == other.Id &&
+           Reason == other.Reason;
         }
 
         public override string ToString()
@@ -103,11 +115,10 @@ namespace DotnetT4PocoDsl.Events
 
         public bool Equals(DepartmentAdded other)
         {
-            return
-                Id == other.Id &&
-                ReferenceNumber == other.ReferenceNumber &&
-                Name == other.Name &&
-                Description == other.Description;
+            return Id == other.Id &&
+           ReferenceNumber == other.ReferenceNumber &&
+           Name == other.Name &&
+           Description == other.Description;
         }
 
         public override string ToString()
@@ -133,11 +144,10 @@ namespace DotnetT4PocoDsl.Events
 
         public bool Equals(DepartmentUpdated other)
         {
-            return
-                Id == other.Id &&
-                ReferenceNumber == other.ReferenceNumber &&
-                Name == other.Name &&
-                Description == other.Description;
+            return Id == other.Id &&
+           ReferenceNumber == other.ReferenceNumber &&
+           Name == other.Name &&
+           Description == other.Description;
         }
 
         public override string ToString()
@@ -159,9 +169,8 @@ namespace DotnetT4PocoDsl.Events
 
         public bool Equals(DepartmentRemoved other)
         {
-            return
-                Id == other.Id &&
-                Reason == other.Reason;
+            return Id == other.Id &&
+           Reason == other.Reason;
         }
 
         public override string ToString()
