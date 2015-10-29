@@ -21,6 +21,8 @@ using System.Xml.Linq;
         "Events.xml"
     };
 
+    var firstCharToLower = new Func<string, string>(s => Char.ToLowerInvariant(s[0]) + s.Substring(1));
+
     //Processing inputs
     foreach (var input in inputs)
     {
@@ -48,7 +50,7 @@ namespace <#= sourceDoc.Root.Attribute("namespace").Value #>
 <# /***************************** Constructor ***********************/ #>
 <#
         var constructorArgs = propertyDefAttribs
-            .Select(property => property.Value + " " + property.Name.ToString().ToLower() + " = default(" + property.Value + ")");
+            .Select(property => property.Value + " " + firstCharToLower(property.Name.LocalName) + " = default(" + property.Value + ")");
         #>
         public <#= classDefElement.Name #>(<#= String.Join(", ", constructorArgs) #>)
         {
@@ -56,7 +58,7 @@ namespace <#= sourceDoc.Root.Attribute("namespace").Value #>
         for (var i = 0; i < propertyDefAttribs.Count(); i++)
         {
             var property = propertyDefAttribs.ElementAt(i);
-            #>            <#= property.Name #> = <#= property.Name.ToString().ToLower() #>;
+            #>            <#= property.Name #> = <#= firstCharToLower(property.Name.LocalName) #>;
 <#
         }
 #>

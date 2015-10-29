@@ -14,13 +14,13 @@ namespace DotnetT4PocoDsl.Commands
         public IDictionary<string, string> CustomFields { get; set; }
         public XElement FieldsMeta { get; set; }
 
-        public AddDepartmentCommand(string referencenumber = default(string), string name = default(string), string description = default(string), IDictionary<string, string> customfields = default(IDictionary<string, string>), XElement fieldsmeta = default(XElement))
+        public AddDepartmentCommand(string referenceNumber = default(string), string name = default(string), string description = default(string), IDictionary<string, string> customFields = default(IDictionary<string, string>), XElement fieldsMeta = default(XElement))
         {
-            ReferenceNumber = referencenumber;
+            ReferenceNumber = referenceNumber;
             Name = name;
             Description = description;
-            CustomFields = customfields;
-            FieldsMeta = fieldsmeta;
+            CustomFields = customFields;
+            FieldsMeta = fieldsMeta;
         }
 
         public bool Equals(AddDepartmentCommand other)
@@ -47,14 +47,14 @@ namespace DotnetT4PocoDsl.Commands
         public IDictionary<string, string> CustomFields { get; set; }
         public XElement FieldsMeta { get; set; }
 
-        public UpdateDepartmentCommand(int id = default(int), string referencenumber = default(string), string name = default(string), string description = default(string), IDictionary<string, string> customfields = default(IDictionary<string, string>), XElement fieldsmeta = default(XElement))
+        public UpdateDepartmentCommand(int id = default(int), string referenceNumber = default(string), string name = default(string), string description = default(string), IDictionary<string, string> customFields = default(IDictionary<string, string>), XElement fieldsMeta = default(XElement))
         {
             Id = id;
-            ReferenceNumber = referencenumber;
+            ReferenceNumber = referenceNumber;
             Name = name;
             Description = description;
-            CustomFields = customfields;
-            FieldsMeta = fieldsmeta;
+            CustomFields = customFields;
+            FieldsMeta = fieldsMeta;
         }
 
         public bool Equals(UpdateDepartmentCommand other)
@@ -105,10 +105,10 @@ namespace DotnetT4PocoDsl.Events
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public DepartmentAdded(int id = default(int), string referencenumber = default(string), string name = default(string), string description = default(string))
+        public DepartmentAdded(int id = default(int), string referenceNumber = default(string), string name = default(string), string description = default(string))
         {
             Id = id;
-            ReferenceNumber = referencenumber;
+            ReferenceNumber = referenceNumber;
             Name = name;
             Description = description;
         }
@@ -134,10 +134,10 @@ namespace DotnetT4PocoDsl.Events
         public string Name { get; set; }
         public string Description { get; set; }
 
-        public DepartmentUpdated(int id = default(int), string referencenumber = default(string), string name = default(string), string description = default(string))
+        public DepartmentUpdated(int id = default(int), string referenceNumber = default(string), string name = default(string), string description = default(string))
         {
             Id = id;
-            ReferenceNumber = referencenumber;
+            ReferenceNumber = referenceNumber;
             Name = name;
             Description = description;
         }
