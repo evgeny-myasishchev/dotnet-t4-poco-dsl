@@ -26,10 +26,10 @@ namespace DotnetT4PocoDsl.Commands
         public bool Equals(AddDepartmentCommand other)
         {
             return ReferenceNumber == other.ReferenceNumber &&
-           Name == other.Name &&
-           Description == other.Description &&
-           CustomFields.SequenceEqual(other.CustomFields) &&
-           XNode.DeepEquals(FieldsMeta, other.FieldsMeta);
+                   Name == other.Name &&
+                   Description == other.Description &&
+                   CustomFields.SequenceEqual(other.CustomFields) &&
+                   XNode.DeepEquals(FieldsMeta, other.FieldsMeta);
         }
 
         public override string ToString()
@@ -60,11 +60,11 @@ namespace DotnetT4PocoDsl.Commands
         public bool Equals(UpdateDepartmentCommand other)
         {
             return Id == other.Id &&
-           ReferenceNumber == other.ReferenceNumber &&
-           Name == other.Name &&
-           Description == other.Description &&
-           CustomFields.SequenceEqual(other.CustomFields) &&
-           XNode.DeepEquals(FieldsMeta, other.FieldsMeta);
+                   ReferenceNumber == other.ReferenceNumber &&
+                   Name == other.Name &&
+                   Description == other.Description &&
+                   CustomFields.SequenceEqual(other.CustomFields) &&
+                   XNode.DeepEquals(FieldsMeta, other.FieldsMeta);
         }
 
         public override string ToString()
@@ -87,7 +87,7 @@ namespace DotnetT4PocoDsl.Commands
         public bool Equals(RemoveDepartmentCommand other)
         {
             return Id == other.Id &&
-           Reason == other.Reason;
+                   Reason == other.Reason;
         }
 
         public override string ToString()
@@ -116,9 +116,9 @@ namespace DotnetT4PocoDsl.Events
         public bool Equals(DepartmentAdded other)
         {
             return Id == other.Id &&
-           ReferenceNumber == other.ReferenceNumber &&
-           Name == other.Name &&
-           Description == other.Description;
+                   ReferenceNumber == other.ReferenceNumber &&
+                   Name == other.Name &&
+                   Description == other.Description;
         }
 
         public override string ToString()
@@ -145,9 +145,9 @@ namespace DotnetT4PocoDsl.Events
         public bool Equals(DepartmentUpdated other)
         {
             return Id == other.Id &&
-           ReferenceNumber == other.ReferenceNumber &&
-           Name == other.Name &&
-           Description == other.Description;
+                   ReferenceNumber == other.ReferenceNumber &&
+                   Name == other.Name &&
+                   Description == other.Description;
         }
 
         public override string ToString()
@@ -170,7 +170,7 @@ namespace DotnetT4PocoDsl.Events
         public bool Equals(DepartmentRemoved other)
         {
             return Id == other.Id &&
-           Reason == other.Reason;
+                   Reason == other.Reason;
         }
 
         public override string ToString()

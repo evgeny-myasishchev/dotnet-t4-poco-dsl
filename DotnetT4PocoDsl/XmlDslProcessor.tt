@@ -77,7 +77,7 @@ namespace <#= sourceDoc.Root.Attribute("namespace").Value #>
         #>
         public bool Equals(<#= classDefElement.Name #> other)
         {
-            return <#= String.Join(" &&\r\n           ", equalityParts) #>;
+            return <#= String.Join(" &&\r\n                   ", equalityParts) #>;
         }
 
 <# /***************************** ToString ***********************/ #>
