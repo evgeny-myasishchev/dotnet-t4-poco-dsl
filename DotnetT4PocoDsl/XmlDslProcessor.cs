@@ -30,60 +30,6 @@ namespace DotnetT4PocoDsl.Commands
         }
     }
 
-    public class AddDepartmentCommand1 : IEquatable<AddDepartmentCommand1>
-    {
-        public string ReferenceNumber { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-
-        public AddDepartmentCommand1(string referencenumber = default(string), string name = default(string), string description = default(string))
-        {
-            ReferenceNumber = referencenumber;
-            Name = name;
-            Description = description;
-        }
-
-        public bool Equals(AddDepartmentCommand1 other)
-        {
-            return
-                ReferenceNumber == other.ReferenceNumber &&
-                Name == other.Name &&
-                Description == other.Description;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("<AddDepartmentCommand1 ReferenceNumber: {0}, Name: {1}, Description: {2}>", ReferenceNumber, Name, Description);
-        }
-    }
-
-    public class AddDepartmentCommand2 : IEquatable<AddDepartmentCommand2>
-    {
-        public string ReferenceNumber { get; set; }
-        public string Name { get; set; }
-        public string Description { get; set; }
-
-        public AddDepartmentCommand2(string referencenumber = default(string), string name = default(string), string description = default(string))
-        {
-            ReferenceNumber = referencenumber;
-            Name = name;
-            Description = description;
-        }
-
-        public bool Equals(AddDepartmentCommand2 other)
-        {
-            return
-                ReferenceNumber == other.ReferenceNumber &&
-                Name == other.Name &&
-                Description == other.Description;
-        }
-
-        public override string ToString()
-        {
-            return string.Format("<AddDepartmentCommand2 ReferenceNumber: {0}, Name: {1}, Description: {2}>", ReferenceNumber, Name, Description);
-        }
-    }
-
     public class UpdateDepartmentCommand : IEquatable<UpdateDepartmentCommand>
     {
         public int Id { get; set; }
