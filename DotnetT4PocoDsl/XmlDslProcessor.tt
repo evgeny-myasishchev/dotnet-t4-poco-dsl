@@ -6,7 +6,6 @@
 <#@ assembly name="System.Xml" #>
 <#@ assembly name="System.Xml.Linq" #>
 <#@ import namespace="System.Linq" #>
-<#@ import namespace="System.Text" #>
 <#@ import namespace="System.Xml.Linq" #>
 <#@ output extension=".cs" #>
 //Generated file. Do not edit it manually.
@@ -38,16 +37,19 @@ namespace <#= sourceDoc.Root.Attribute("namespace").Value #>
 
     public class <#= classDefElement.Name #> : IEquatable<<#= classDefElement.Name #>>
     {
+<# /***************************** Properties ***********************/ #>
 <#
         foreach (var property in propertyDefAttribs)
         {
             #>        public <#= property.Value #> <#= property.Name #> { get; set; }
 <#
-        }
+        } #>
+
+<# /***************************** Constructor ***********************/ #>
+<#
         var constructorArgs = propertyDefAttribs
             .Select(property => property.Value + " " + property.Name.ToString().ToLower() + " = default(" + property.Value + ")");
         #>
-
         public <#= classDefElement.Name #>(<#= String.Join(", ", constructorArgs) #>)
         {
 <#
@@ -60,6 +62,7 @@ namespace <#= sourceDoc.Root.Attribute("namespace").Value #>
 #>
         }
 
+<# /***************************** Equals ***********************/ #>
 <#
         var equalityParts = propertyDefAttribs.Select(property =>
         {
@@ -75,22 +78,11 @@ namespace <#= sourceDoc.Root.Attribute("namespace").Value #>
             return <#= String.Join(" &&\r\n           ", equalityParts) #>;
         }
 
+<# /***************************** ToString ***********************/ #>
+<# var toStringParts = propertyDefAttribs.Select(property => "\"" + property.Name + ": \", " + property.Name); #>
         public override string ToString()
         {
-<#
-        var formatPart = new StringBuilder();
-        var argumentsPart = new StringBuilder();
-        formatPart.Append("<").Append(classDefElement.Name).Append(" ");
-        for (var i = 0; i < propertyDefAttribs.Count(); i++)
-        {
-            var nextI = i + 1;
-            var property = propertyDefAttribs.ElementAt(i);
-            formatPart.Append(property.Name).Append(": {" + i + "}").Append(nextI < propertyDefAttribs.Count() ? ", " : "");
-            argumentsPart.Append(property.Name).Append(nextI < propertyDefAttribs.Count() ? ", " : "");
-        }
-        formatPart.Append(">");
-        #>
-            return string.Format("<#= formatPart #>", <#= argumentsPart #>);
+            return String.Concat("<<#= classDefElement.Name #> ", <#= String.Join(", \", \" , ", toStringParts) #>, ">");
         }
     }
 <#

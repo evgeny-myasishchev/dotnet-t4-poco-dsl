@@ -34,7 +34,7 @@ namespace DotnetT4PocoDsl.Commands
 
         public override string ToString()
         {
-            return string.Format("<AddDepartmentCommand ReferenceNumber: {0}, Name: {1}, Description: {2}, CustomFields: {3}, FieldsMeta: {4}>", ReferenceNumber, Name, Description, CustomFields, FieldsMeta);
+            return String.Concat("<AddDepartmentCommand ", "ReferenceNumber: ", ReferenceNumber, ", " , "Name: ", Name, ", " , "Description: ", Description, ", " , "CustomFields: ", CustomFields, ", " , "FieldsMeta: ", FieldsMeta, ">");
         }
     }
 
@@ -69,7 +69,7 @@ namespace DotnetT4PocoDsl.Commands
 
         public override string ToString()
         {
-            return string.Format("<UpdateDepartmentCommand Id: {0}, ReferenceNumber: {1}, Name: {2}, Description: {3}, CustomFields: {4}, FieldsMeta: {5}>", Id, ReferenceNumber, Name, Description, CustomFields, FieldsMeta);
+            return String.Concat("<UpdateDepartmentCommand ", "Id: ", Id, ", " , "ReferenceNumber: ", ReferenceNumber, ", " , "Name: ", Name, ", " , "Description: ", Description, ", " , "CustomFields: ", CustomFields, ", " , "FieldsMeta: ", FieldsMeta, ">");
         }
     }
 
@@ -92,7 +92,7 @@ namespace DotnetT4PocoDsl.Commands
 
         public override string ToString()
         {
-            return string.Format("<RemoveDepartmentCommand Id: {0}, Reason: {1}>", Id, Reason);
+            return String.Concat("<RemoveDepartmentCommand ", "Id: ", Id, ", " , "Reason: ", Reason, ">");
         }
     }
 }
@@ -123,7 +123,7 @@ namespace DotnetT4PocoDsl.Events
 
         public override string ToString()
         {
-            return string.Format("<DepartmentAdded Id: {0}, ReferenceNumber: {1}, Name: {2}, Description: {3}>", Id, ReferenceNumber, Name, Description);
+            return String.Concat("<DepartmentAdded ", "Id: ", Id, ", " , "ReferenceNumber: ", ReferenceNumber, ", " , "Name: ", Name, ", " , "Description: ", Description, ">");
         }
     }
 
@@ -152,7 +152,7 @@ namespace DotnetT4PocoDsl.Events
 
         public override string ToString()
         {
-            return string.Format("<DepartmentUpdated Id: {0}, ReferenceNumber: {1}, Name: {2}, Description: {3}>", Id, ReferenceNumber, Name, Description);
+            return String.Concat("<DepartmentUpdated ", "Id: ", Id, ", " , "ReferenceNumber: ", ReferenceNumber, ", " , "Name: ", Name, ", " , "Description: ", Description, ">");
         }
     }
 
@@ -175,7 +175,7 @@ namespace DotnetT4PocoDsl.Events
 
         public override string ToString()
         {
-            return string.Format("<DepartmentRemoved Id: {0}, Reason: {1}>", Id, Reason);
+            return String.Concat("<DepartmentRemoved ", "Id: ", Id, ", " , "Reason: ", Reason, ">");
         }
     }
 }
